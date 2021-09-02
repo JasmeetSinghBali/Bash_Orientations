@@ -1,4 +1,12 @@
-# Bash Scripting
+# Bash Scripting (CheatSheet)
+- [x] shebang #! + bashPath(which bash)
+- [x] chmod +x filename.sh
+- [x] Capturing output from shell cat >
+- [x] execute bash script ./filename.sh
+- [x] Append content to existing file cat >>
+- [x] Conditional,Loops,If-elif,AND(&&) OR(||) 
+- [x] Break & Continue
+- [x] Script input (Single/Multiple args=("$@"))
 
 >  First Bash Script
 
@@ -185,7 +193,182 @@
         # || 
         [ condition1 ] || [ condition2 ]
 
-- Switch case statement
+---
 
-        29:34 timestamp 
-        https://www.youtube.com/watch?v=e7BufAVwDiM
+>  Loops (while,until,for)
+
+                # while loop
+                # Syntax - while [ condition ] do done
+
+                # example
+                number=1
+                while [ $number -lt 10 ]
+                do 
+                    echo "$number"
+                    number=$(( number+1 ))        
+                done
+
+
+                # until loop
+                # it executes the code until the condition mentioned is false or we can say until loop stops  when the condition mentioned is achieved.
+                
+                number=1
+                until [ $number -ge 10 ]
+                do 
+                    echo "$number"
+                    number=$(( number+1 ))        
+                done
+
+                # output for until loop
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+
+
+                # for loop
+                # syntax for i in 1 2 3 4 5 do done
+                for i in 1 2 3 4 5
+                do
+                    echo $i
+                done
+
+                # output
+                1
+                2
+                3
+                4
+                5
+
+                # for a particular range say from 0 to 20 times
+                for i in {0..20}
+                do
+                    echo $i
+                done
+
+                # output
+                1
+                2
+                3
+                ..
+                ..
+                20
+
+                # adding increment
+                # {start..ending..increment}
+                for i in {0..20..2}
+                do
+                    echo "$i"
+                done
+
+                # output
+                0
+                2
+                4
+                6
+                ..
+                20
+
+                # the conventional way
+                for (( i=0; i<5;i++ ))
+                do
+                    echo "$i"
+                done
+
+                #output
+                0
+                1
+                2
+                3
+                4
+
+---
+
+> Break & Continue
+
+                # loop breaks when i becomes 6
+                for (( i=0;i<10;i++ ))
+                do
+                    if [ $i -gt 5 ]
+                    then
+                        break
+                    fi
+                    echo $i
+                done
+
+                #output
+                0
+                1
+                2
+                3
+                4
+                5
+
+                # continue(skipping a particular iteration)
+                for (( i=0;i<10;i++ ))
+                do
+                    if [ $i -eq 9 ] || [ $i -eq 5 ]
+                    then
+                        continue
+                    fi
+                    echo $i
+                done
+
+                # output
+                0
+                1
+                2
+                3
+                4
+                6
+                7
+                8
+
+---
+ 
+> Script Input "$@"
+
+            # Script Input takes three inputs
+            echo $1 $2 $3
+
+            ./hello.sh BMW TOYOTA MERCEDES
+            # the BMW, TOYOTA and MERCEDES will get stored in $1,$2 & $3 respectively
+
+            # we can also print the file name
+
+            echo $0 $1 $2 $3
+            ./hello.sh BMW TOYOTA MERCEDES
+
+            #output
+            ./hello.sh BMW TOYOTA MERCEDES 
+            
+
+            # IMPORTANT
+            # to get an array/multiple of inputs
+            # args = ("$@")
+            # $0 specifies any number of inputs
+            # $3 specifies 3 inputs allowed only
+            
+            # --hello.sh--
+            args = ("$@")
+            echo $@ 
+            # prints all inputs given while running the bash script
+
+            ./hello.sh aloo gobi bengan kheera
+
+            #output
+            aloo gobi bengan kheera
+
+            # to print out the length of the array
+            echo $#
+
+> Script Read via stdin
+52:52
+https://www.youtube.com/watch?v=e7BufAVwDiM
+ 
+
