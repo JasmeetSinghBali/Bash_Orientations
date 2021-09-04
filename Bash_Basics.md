@@ -367,8 +367,64 @@
             # to print out the length of the array
             echo $#
 
-> Script Read via stdin
-52:52
-https://www.youtube.com/watch?v=e7BufAVwDiM
- 
+---
 
+> Script read line by line from file 
+https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/
+
+                input="filepath/"
+                while IFS= read -r line
+                do
+                    echo "$line"
+                done < "$input"
+
+---
+
+> Script output via STDOUT & STDERR
+
+- **ls -al gives the stdout if we want to store this stdout to a file**
+- **ls +al is the stderr**
+
+            ls -al 1>file1.txt 2>file2.txt
+            # this will send the standard output to file1 while std error to file2
+            # so for this case file 2 will be empty
+
+
+            ls +al 1>file1.txt 2>file2.txt
+            # in this case file1 will be empty while file2 will show the error log
+ 
+- **Sending only stdout or stderr to a file**
+
+            ls -al >file1.txt # shows stdout
+            or
+            ls +al >file1.txt # shows stderr
+
+-**Sending both stdout and stderr in single file**
+
+            ls -al >file1.txt 2>&1
+
+---
+
+> Send output of one script to act as input for another script 
+
+- **a pipe is a special file that connects the output of one process to the input of another process.**
+
+- **exporting something from one script to another script**
+            // ----hello.sh----
+            MESSAGE="Olaaa! How are You?"
+            export MESSAGE
+            ./secondScript.sh
+
+            // ---create a new secondScript.sh--
+            #! /usr/bin/bash
+            echo "Message from Hello script is : $MESSAGE"
+            // make it executable
+            chmod +x secondScript.sh
+            // ls -al to double check
+
+            // now run the hello.sh
+            bash hello.sh
+
+---
+
+> String Processing 1:06 https://www.youtube.com/watch?v=e7BufAVwDiM
