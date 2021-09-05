@@ -427,4 +427,60 @@ https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/
 
 ---
 
-> String Processing 1:06 https://www.youtube.com/watch?v=e7BufAVwDiM
+> String Processing 
+
+- **input string in bash and compare them**
+
+            echo "First String"
+            read st1
+            echo "Second String"
+            read st2
+            if [ "$st1" == "$st2" ]
+            then
+                echo "Strings Match"
+            else
+                echo "Strings Mismatch"
+            fi
+
+- **length comparison /< less than, \> greater than**
+
+            echo "First String"
+            read st1
+            echo "Second String"
+            read st2
+            if [ "$st1" \< "$st2" ]
+            then
+                echo "$st2 is greater in length"
+            else
+                echo "$st1 is greater in length"
+            fi
+
+- **string concatenation**
+
+            echo "First String"
+            read st1
+            echo "Second String"
+            read st2
+            c=$st1$st2
+
+            echo $c
+
+- **Uppercase ^|^^ or lowercase ,|,,**
+
+            echo "First String"
+            read st1
+            echo "Second String"
+            read st2
+            
+            # uppercase only the first character in first string
+            echo ${st1^}
+            # uppercase all the characters of first string
+            echo ${st1^^}
+
+            # lowercase only the first character in first string
+            echo ${st1,}
+            # lowercase all the characters of first string
+            echo ${st1,,}
+---
+
+> Numbers & Arithmetic 1:15 https://www.youtube.com/watch?v=e7BufAVwDiM
